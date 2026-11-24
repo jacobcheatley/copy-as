@@ -1,0 +1,7 @@
+{
+  "name": "raw-markdown",
+  "version": "0.1.0",
+  "description": "Toggle Claude's replies between rendered and raw markdown source, so tables and code copy cleanly out of the terminal",
+  "types": "./types/index.d.ts",
+  "license": "MIT"
+}
