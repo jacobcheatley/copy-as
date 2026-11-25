@@ -16,9 +16,14 @@ anything else that reads markdown.
 Hover a reply block to show its buttons:
 
 - `[raw]` / `[rendered]`: flip that block only
-- `[copy md]`: its markdown to the clipboard
-- `[copy html]`: inline-styled HTML that pastes formatted into Teams, Outlook and
-  Google Docs
+- `[md]`: its markdown to the clipboard
+- `[html]`: inline-styled HTML that pastes formatted into Teams, Outlook and Google Docs
+- `[tsv]`, one per table: the table as tab-separated cells, which paste into a
+  spreadsheet as cells, markdown marks stripped
+- `[sh]`, `[ts]`, `[code]`..., one per fenced block: the code alone, no fences
+
+Hover a tool result (Bash output, a file read) for `[copy]`: its text without the
+transcript's gutter and indent.
 
 Hover and clicks need the fullscreen layout; in the classic scrollback layout, use
 `/raw` and `/copy`.

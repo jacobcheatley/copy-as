@@ -5,11 +5,11 @@ const CELL_STYLE = 'border:1px solid #999;padding:4px 8px;vertical-align:top'
 const QUOTE_STYLE = 'border-left:3px solid #999;margin:0;padding-left:8px;color:#555'
 
 const LIST_ITEM = /^(\s*)([-*+]|(\d+)[.)])\s+(.*)$/
-const PIPE_ROW = /^\s*\|.*\|\s*$/
-const PIPE_SEPARATOR = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/
+export const PIPE_ROW = /^\s*\|.*\|\s*$/
+export const PIPE_SEPARATOR = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/
 const HEADING = /^(#{1,6})\s+(.*?)\s*#*\s*$/
 const RULE = /^\s*([-*_])(\s*\1){2,}\s*$/
-const FENCE = /^\s*(`{3,}|~{3,})/
+export const FENCE = /^\s*(`{3,}|~{3,})/
 const QUOTE = /^\s*>\s?(.*)$/
 
 type Align = 'left' | 'center' | 'right'
@@ -32,7 +32,7 @@ export const inline = (text: string): string => {
     .replace(/\u0000(\d+)\u0000/g, (_, n) => `<code>${codeSpans[Number(n)]}</code>`)
 }
 
-const splitPipeRow = (line: string) =>
+export const splitPipeRow = (line: string) =>
   line.trim().replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map(cell => cell.replace(/\\\|/g, '|').trim())
 
 const alignOf = (separatorCell: string): Align => {
