@@ -61,6 +61,7 @@ test('each table and code block gets a button copying its TSV or code', async ($
   expect(await ui.find({ type: 'Button', text: '[tsv]' })).toBeDefined()
   expect(await ui.find({ type: 'Button', text: '[sh]' })).toBeDefined()
   await ui.press({ key: 'm1:part0' })
+  expect(await ui.find({ type: 'Button', text: '[copied]' })).toBeDefined()
   await ui.press({ key: 'm1:part1' })
   expect(copied).toEqual(['a\tb\n1\t2', 'ls -la'])
 })
