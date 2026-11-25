@@ -1,9 +1,9 @@
-# raw-markdown
+# copy-as
 
-A Claude Code mod that toggles how replies are drawn in the terminal: rendered (the
-default, box-drawing tables, styled code) or raw markdown source (pipe tables, fences,
-`**bold**` as written). Raw source pastes cleanly into editors, docs, Teams and
-anything else that reads markdown.
+A Claude Code mod for getting replies out of the terminal with their formatting.
+Hover a reply to copy it as markdown, Teams-ready HTML, a table as TSV, or a code
+block alone; hover a tool result to copy its output. `/raw` switches replies between
+rendered and raw markdown source, so a plain mouse copy gives markdown too.
 
 ## Use
 
@@ -44,10 +44,10 @@ neither is there.
 From this repository (private: needs a git credential for github.com on the machine):
 
 ```
-/plugin install raw-markdown --marketplace jacobcheatley/claude-output-style-mod
+/plugin install copy-as --marketplace jacobcheatley/copy-as
 ```
 
-or from a shell, `claude plugin install raw-markdown --marketplace jacobcheatley/claude-output-style-mod`.
+or from a shell, `claude plugin install copy-as --marketplace jacobcheatley/copy-as`.
 
 To run a working copy instead, so edits load without an update, name its folder in
 `CLAUDE_CODE_PLUGIN_DIRS` in the `env` block of `~/.claude/settings.json`, or pass

@@ -1,13 +1,13 @@
 {
-  "name": "claude-output-style-mod",
+  "name": "copy-as",
   "owner": {
     "name": "jacobcheatley"
   },
   "plugins": [
     {
-      "name": "raw-markdown",
+      "name": "copy-as",
       "source": "./"
     }
   ],
-  "description": "Claude Code output mods: raw markdown replies and copy buttons"
+  "description": "copy-as: copy Claude Code replies and tool output with their formatting"
 }

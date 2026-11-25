@@ -6,7 +6,7 @@ const REPLY = '| a | b |\n|---|---|\n| **1** | 2 |\n\n```sh\nls -la\n```'
 
 const message = (requestId: string, text = REPLY) =>
   ({
-    plugin: 'raw-markdown',
+    plugin: 'copy-as',
     component: 'AssistantMessage',
     surface: 'terminal',
     requestId,
@@ -70,7 +70,7 @@ test('a Bash result row copies its output; a result with no text gets no button'
   const copied = await start($, on)
   const result = (requestId: string, output: unknown) =>
     ({
-      plugin: 'raw-markdown',
+      plugin: 'copy-as',
       component: 'ToolResult',
       surface: 'terminal',
       requestId,

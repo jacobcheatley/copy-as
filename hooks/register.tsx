@@ -4,11 +4,11 @@ import type { EngineInterface, Register, RenderSurface } from 'claude-code'
 import { HTML_CLIPBOARD_SCRIPT, markdownToHtml } from './html'
 import { type Part, partsOf, tableToTsv, toolOutputText } from './parts'
 
-const isRaw = atom({ plugin: 'raw-markdown', key: 'isRaw' } as const, false)
+const isRaw = atom({ plugin: 'copy-as', key: 'isRaw' } as const, false)
 // Rows drawn opposite to the global mode, by the row's requestId.
-const flippedRows = atom({ plugin: 'raw-markdown', key: 'flippedBlocks' } as const, [] as string[])
+const flippedRows = atom({ plugin: 'copy-as', key: 'flippedBlocks' } as const, [] as string[])
 // The button just copied from: its label confirms the copy instead of a toast over the buttons.
-const copiedKey = atom({ plugin: 'raw-markdown', key: 'copiedKey' } as const, null as string | null)
+const copiedKey = atom({ plugin: 'copy-as', key: 'copiedKey' } as const, null as string | null)
 const COPIED_LABEL_MS = 1500
 
 type Press = { surface: RenderSurface }
