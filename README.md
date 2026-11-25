@@ -34,7 +34,7 @@ per-block flips. The status line shows `raw md` while it is on. The stored trans
 Related built-in: `/copy` puts the last reply's markdown on the clipboard without
 touching the display.
 
-`[copy html]` converts in the mod itself (`hooks/html.ts`: pipe tables with
+`[html]` converts in the mod itself (`hooks/html.ts`: pipe tables with
 alignment, nested lists, headings, quotes, fences, inline marks). Writing `text/html`
 to the clipboard needs `wl-copy` (Wayland) or `xclip` (X11); a toast says when
 neither is there.
