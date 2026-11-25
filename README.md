@@ -41,7 +41,7 @@ neither is there.
 
 ## Install
 
-From this repository (private: needs a git credential for github.com on the machine):
+From this repository:
 
 ```
 /plugin install copy-as --marketplace jacobcheatley/copy-as
