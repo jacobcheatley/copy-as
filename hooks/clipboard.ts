@@ -28,7 +28,7 @@ export const utf8Hex = (text: string) =>
 // $.ui.copy writes text/plain only, so text/html goes through the OS's own clipboard tool.
 export const htmlClipboardRun = (platform: Platform, html: string): ClipboardRun => {
   if (platform === 'macos') {
-    return { argv: ['osascript', '-e', `set the clipboard to «data HTML${utf8Hex(html)}»`] }
+    return { argv: ['osascript', '-e', `set the clipboard to \u00abdata HTML${utf8Hex(html)}\u00bb`] }
   }
   if (platform === 'windows' || platform === 'wsl') return { argv: POWERSHELL, stdin: html }
   return { argv: ['sh', '-c', LINUX_SCRIPT], stdin: html }
