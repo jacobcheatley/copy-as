@@ -1,0 +1,13 @@
+{
+  "name": "claude-output-style-mod",
+  "owner": {
+    "name": "jacobcheatley"
+  },
+  "plugins": [
+    {
+      "name": "raw-markdown",
+      "source": "./"
+    }
+  ],
+  "description": "Claude Code output mods: raw markdown replies and copy buttons"
+}

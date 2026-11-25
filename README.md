@@ -41,14 +41,18 @@ neither is there.
 
 ## Install
 
-Run it from this folder for one session:
+From this repository (private: needs a git credential for github.com on the machine):
 
-```sh
-claude --plugin-dir ~/claude-output-style-mod
+```
+/plugin install raw-markdown --marketplace jacobcheatley/claude-output-style-mod
 ```
 
-Or load it in every session by adding the folder to `CLAUDE_CODE_PLUGIN_DIRS` in the
-`env` block of `~/.claude/settings.json`.
+or from a shell, `claude plugin install raw-markdown --marketplace jacobcheatley/claude-output-style-mod`.
+
+To run a working copy instead, so edits load without an update, name its folder in
+`CLAUDE_CODE_PLUGIN_DIRS` in the `env` block of `~/.claude/settings.json`, or pass
+`claude --plugin-dir <folder>` for one session. Use one route, not both, or the mod
+loads twice.
 
 ## Develop
 
