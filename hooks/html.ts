@@ -152,12 +152,3 @@ const blocksOf = (lines: string[]): string[] => {
 
 export const markdownToHtml = (markdown: string): string =>
   '<meta charset="utf-8">' + blocksOf(markdown.replace(/\t/g, '    ').split(/\r?\n/)).join('\n')
-
-// $.ui.copy writes text/plain only. Silencing the clipboard tool's output matters:
-// wl-copy forks a server that would otherwise hold the captured pipe open.
-export const HTML_CLIPBOARD_SCRIPT = [
-  'exec >/dev/null 2>&1',
-  'if [ -n "$WAYLAND_DISPLAY" ]; then exec wl-copy --type text/html',
-  'elif command -v xclip; then exec xclip -selection clipboard -t text/html',
-  'else exit 127; fi',
-].join('\n')

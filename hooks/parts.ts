@@ -53,3 +53,26 @@ export const toolOutputText = (output: unknown): string | undefined => {
   }
   return undefined
 }
+
+// What a rendered line reads as: no markdown marks, list markers, pipes or runs of space.
+const readable = (line: string) =>
+  line
+    .replace(/^\s*(?:[-*+]|\d+[.)]|#{1,6}|>)\s+/, '')
+    .replace(/[*_~`|]/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)\s]+\)/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+// ponytail: matches the selection's first and last lines to whole source lines; a selection
+// whose first line repeats earlier in the reply resolves to the earlier copy.
+export const sourceOfSelection = (markdown: string, selected: string): string | undefined => {
+  const wanted = selected.split(/\r?\n/).map(readable).filter(Boolean)
+  const first = wanted[0]
+  const last = wanted.at(-1)
+  if (first === undefined || last === undefined) return undefined
+  const lines = markdown.split(/\r?\n/)
+  const start = lines.findIndex(line => readable(line).includes(first))
+  if (start < 0) return undefined
+  const end = lines.findIndex((line, i) => i >= start && readable(line).includes(last))
+  return end < 0 ? undefined : lines.slice(start, end + 1).join('\n')
+}

@@ -1,6 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
-import { partsOf, tableToTsv, toolOutputText } from './parts'
+import { partsOf, sourceOfSelection, tableToTsv, toolOutputText } from './parts'
 
 const REPLY = [
   'Intro',
@@ -32,4 +32,13 @@ test('tool output text comes from Bash stdout and stderr, a string, or file cont
   expect(toolOutputText('plain')).toBe('plain')
   expect(toolOutputText({ type: 'text', file: { content: 'file body' } })).toBe('file body')
   expect(toolOutputText({ matches: 3 })).toBeUndefined()
+})
+
+test('a rendered selection maps back to the markdown lines behind it', async () => {
+  const markdown = 'Intro **bold** and [a link](https://x.y)\n\n- one\n- two\n\n| a | b |\n|---|---|\n| 1 | 2 |'
+  expect(sourceOfSelection(markdown, 'bold and a link\n\none\ntwo')).toBe(
+    'Intro **bold** and [a link](https://x.y)\n\n- one\n- two',
+  )
+  expect(sourceOfSelection(markdown, '1\t2')).toBe('| 1 | 2 |')
+  expect(sourceOfSelection(markdown, 'not in the reply')).toBeUndefined()
 })

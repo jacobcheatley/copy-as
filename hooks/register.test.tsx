@@ -84,3 +84,36 @@ test('a Bash result row copies its output; a result with no text gets no button'
   const empty = await $.ui.mount(result('t2', { stdout: '', stderr: '', interrupted: false }))
   expect(await empty.find({ type: 'Button' })).toBeUndefined()
 })
+
+test('on desktop a reply has no hover row; its right-click menu copies it, its parts and a selection', async ($, on) => {
+  const copied = await start($, on)
+
+  const reply = await $.ui.mount({ ...message('m1'), surface: 'desktop' })
+  expect(await reply.find({ type: 'Button' })).toBeUndefined()
+
+  const menu = await $.ui.mount({
+    plugin: 'copy-as',
+    component: 'ContextMenu',
+    surface: 'desktop',
+    requestId: 'menu',
+    props: { row: { component: 'AssistantMessage', requestId: 'm1' }, selection: { text: '1\t2' } },
+  })
+  for (const title of ['Copy selection as markdown', 'Copy as markdown', 'Copy as HTML', 'Copy table as TSV', 'Copy sh code']) {
+    expect(await menu.find({ type: 'Button', text: title })).toBeDefined()
+  }
+  await menu.press({ key: 'm1:menu:selection' })
+  await menu.press({ key: 'm1:menu:part0' })
+  expect(copied).toEqual(['| **1** | 2 |', 'a\tb\n1\t2'])
+})
+
+test('the right-click menu on a row the mod never drew adds nothing', async ($, on) => {
+  await start($, on)
+  const menu = await $.ui.mount({
+    plugin: 'copy-as',
+    component: 'ContextMenu',
+    surface: 'desktop',
+    requestId: 'menu',
+    props: { row: { component: 'AssistantMessage', requestId: 'unknown' } },
+  })
+  expect(await menu.find({ type: 'Button' })).toBeUndefined()
+})
